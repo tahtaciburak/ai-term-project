@@ -13,6 +13,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.optimizers import SGD
 
+import sys
+
 FPS = 60
 SCREENWIDTH  = 288.0
 SCREENHEIGHT = 512.0
@@ -22,8 +24,11 @@ BASEY        = SCREENHEIGHT * 0.79
 # image, sound and hitmask  dicts
 IMAGES, SOUNDS, HITMASKS = {}, {}, {}
 
-load_saved_pool = 0
-save_current_pool = 0
+load_saved_pool = 1
+if len(sys.argv)>2:
+    if sys.argv[1] == "train":
+        load_saved_pool = 0
+save_current_pool = 1
 current_pool = []
 fitness = []
 total_models = 50
